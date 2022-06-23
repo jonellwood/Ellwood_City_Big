@@ -7,7 +7,7 @@ const respects = {
   },
   Admire: {
     name: "Admire",
-    healing: 40,
+    healing: 20,
     type: "Loving",
     color: "red",
   },
@@ -19,7 +19,7 @@ const respects = {
   },
   WarmFuzzy: {
     name: "WarmFuzzy",
-    healing: 40,
+    healing: 20,
     type: "Just nice",
     color: "red",
   },

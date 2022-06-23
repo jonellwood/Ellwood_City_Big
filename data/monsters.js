@@ -19,7 +19,12 @@ const monsters = {
     },
     animate: true,
     name: "Emby",
-    respects: [respects.Admire, respects.Compliment, respects.WarmFuzzy],
+    respects: [
+      respects.Admire,
+      respects.Compliment,
+      respects.WarmFuzzy,
+      respects.Blessings,
+    ],
   },
   Draggle: {
     position: {

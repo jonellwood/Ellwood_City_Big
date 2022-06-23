@@ -34,4 +34,14 @@ const audio = {
     html5: true,
     volume: 0.3,
   }),
+  bless: new Howl({
+    src: "./audio/bless.wav",
+    html5: true,
+    volume: 0.3,
+  }),
+  initBless: new Howl({
+    src: "./audio/initBless.wav",
+    html5: true,
+    volume: 0.1,
+  }),
 };

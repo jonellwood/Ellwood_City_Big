@@ -108,7 +108,7 @@ class Monster extends Sprite {
 
   faint() {
     document.querySelector("#wordBox").innerHTML =
-      this.name + " is full of love";
+      this.name + " says 'Thanks for the love' ";
     gsap.to(this.position, {
       y: this.position.y + 20,
     });
@@ -134,6 +134,54 @@ class Monster extends Sprite {
 
     switch (respect.name) {
       // name for case is the respect.name that is rendered on the button = not the obj name
+      case "Blessings":
+        audio.initBless.play();
+        const blessImage = new Image();
+        blessImage.src = "./images/blessings.png";
+        const bless = new Sprite({
+          position: {
+            x: this.position.x,
+            y: this.position.y,
+          },
+          image: blessImage,
+          frames: {
+            max: 1,
+          },
+          scale: 4,
+          rotation,
+        });
+
+        // renderedSprites.push(heart);
+        renderedSprites.splice(1, 0, bless);
+
+        gsap.to(bless.position, {
+          x: recipient.position.x,
+          y: recipient.position.y,
+          duration: 1.5,
+          onComplete: () => {
+            // enemy is struck
+            audio.bless.play();
+            gsap.to(healthBar, {
+              width: recipient.health + "%",
+            });
+            gsap.to(recipient.position, {
+              y: recipient.position.y + 10,
+              yoyo: true,
+              repeat: 5,
+              duration: 0.08,
+            });
+
+            gsap.to(recipient, {
+              opacity: 0,
+              yoyo: true,
+              repeat: 5,
+              duration: 0.08,
+            });
+            renderedSprites.splice(1, 1);
+          },
+        });
+
+        break;
       case "WarmFuzzy":
         audio.initWarm.play();
         const warmImage = new Image();
