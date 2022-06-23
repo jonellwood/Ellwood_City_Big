@@ -160,7 +160,7 @@ class Monster extends Sprite {
           onComplete: () => {
             // enemy is struck
             audio.warmHit.play();
-            gsap.to(recipient.healthBar, {
+            gsap.to(healthBar, {
               width: recipient.health + "%",
             });
             gsap.to(recipient.position, {
@@ -201,7 +201,7 @@ class Monster extends Sprite {
           y: recipient.position.y,
           duration: 1.5,
           onComplete: () => {
-            gsap.to(recipient.healthBar, {
+            gsap.to(healthBar, {
               width: recipient.health + "%",
             });
             gsap.to(recipient.position, {

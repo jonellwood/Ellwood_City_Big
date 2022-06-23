@@ -75,6 +75,15 @@ goobieImage.src = "./images/goobie.png";
 const shmooImage = new Image();
 shmooImage.src = "./images/shmoo.png";
 
+const spiritImage = new Image();
+spiritImage.src = "./images/spirit.png";
+
+const racoonImage = new Image();
+racoonImage.src = "./images/racoon.png";
+
+const princessImage = new Image();
+princessImage.src = "./images/princess.png";
+
 const characters = [];
 
 charactersMap.forEach((row, i) => {
@@ -86,7 +95,7 @@ charactersMap.forEach((row, i) => {
             x: j * Boundary.width + offset.x,
             y: i * Boundary.height + offset.y,
           },
-          image: goobieImage,
+          image: princessImage,
           frames: {
             max: 4,
             hold: 60,
@@ -118,7 +127,7 @@ charactersMap.forEach((row, i) => {
             x: j * Boundary.width + offset.x,
             y: i * Boundary.height + offset.y,
           },
-          image: shmooImage,
+          image: goobieImage,
           frames: {
             max: 4,
             hold: 60,
@@ -134,13 +143,13 @@ charactersMap.forEach((row, i) => {
             x: j * Boundary.width + offset.x,
             y: i * Boundary.height + offset.y,
           },
-          image: shmooImage,
+          image: spiritImage,
           frames: {
             max: 4,
             hold: 60,
           },
           scale: 3,
-          // animate: true,
+          animate: true,
         })
       );
     } else if (symbol === 17789) {
@@ -150,9 +159,9 @@ charactersMap.forEach((row, i) => {
             x: j * Boundary.width + offset.x,
             y: i * Boundary.height + offset.y,
           },
-          image: shmooImage,
+          image: racoonImage,
           frames: {
-            max: 4,
+            max: 2,
             hold: 60,
           },
           scale: 3,
