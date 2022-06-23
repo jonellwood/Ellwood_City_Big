@@ -78,6 +78,28 @@ class Sprite {
     }
   }
 }
+class Npc extends Sprite {
+  constructor({
+    isEnemy = false,
+    name,
+    position,
+    image,
+    frames = { max: 1, hold: 10 },
+    sprites,
+    animate = false,
+    rotation = 0,
+  }) {
+    super({
+      position,
+      image,
+      frames,
+      sprites,
+      animate,
+      rotation,
+    });
+    this.name = name;
+  }
+}
 
 class Monster extends Sprite {
   constructor({

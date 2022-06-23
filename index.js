@@ -271,6 +271,10 @@ const battle = {
   initiated: false,
 };
 
+const conversation = {
+  initiated: false,
+};
+
 function animate() {
   const animationId = window.requestAnimationFrame(animate);
 
