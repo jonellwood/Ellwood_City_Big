@@ -36,7 +36,7 @@ const monsters = {
     animate: true,
     isEnemy: true,
     name: "Draggle",
-    // respects: [respects.Blessings, respects.Admire],
-    respects: [respects.Compliment], // delete this line after testing
+    respects: [respects.Blessings, respects.Admire, respects.Compliment],
+    // respects: [respects.Compliment], // delete this line after testing
   },
 };
