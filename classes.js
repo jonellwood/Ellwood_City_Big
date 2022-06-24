@@ -80,7 +80,7 @@ class Sprite {
 }
 class Npc extends Sprite {
   constructor({
-    isEnemy = false,
+    // isEnemy = false,
     name,
     position,
     image,
