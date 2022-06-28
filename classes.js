@@ -351,7 +351,7 @@ class Boundary {
   }
 
   draw() {
-    c.fillStyle = "rgba(0, 0, 255, 0.08 )";
+    c.fillStyle = "rgba(0, 0, 255, 0.0 )";
     c.fillRect(this.position.x, this.position.y, this.width, this.height);
   }
 }

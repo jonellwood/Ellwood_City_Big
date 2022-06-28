@@ -402,7 +402,8 @@ function animate() {
         ) {
           window.cancelAnimationFrame(animationId);
           audio.map.stop();
-          // console.log("did we make it this far?");
+
+          // console.log(rectangularCollision);
           conversation.initiated = true;
 
           gsap.to("#conversationDiv", {
