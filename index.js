@@ -1,25 +1,32 @@
 console.log(
-  "This project is based in part on a tutorial from ChrisCourses.com with artwork from itch.io by Cyporkadore & Pixel-boy"
+  "This project is based in part on a tutorial from ChrisCourses.com with artwork from itch.io. A full list of credits for the artwork can be found on the readme at https://github.com/jonellwood/Ellwood_City_Big/blob/main/README.md "
 );
 
 const canvas = document.querySelector("canvas");
 const c = canvas.getContext("2d");
-// console.log(gsap);
+// console.log(conversationZonesData);
 
 canvas.width = 1048;
 canvas.height = 576;
+
 const collisionsMap = [];
-// 70 in for loop is based on the tile width of the map
+// 140 in for loop is based on the tile width of the map
 for (let i = 0; i < collisions.length; i += 140) {
   collisionsMap.push(collisions.slice(i, 140 + i));
 }
 
 const battleZonesMap = [];
-// 70 in for loop is based on the tile width of the map
+// 140 in for loop is based on the tile width of the map
 for (let i = 0; i < battleZonesData.length; i += 140) {
   battleZonesMap.push(battleZonesData.slice(i, 140 + i));
 }
 // console.log(battleZonesMap);
+
+const conversationZonesMap = [];
+for (let i = 0; i < conversationZonesData.length; i += 140) {
+  conversationZonesMap.push(conversationZonesData.slice(i, 140 + i));
+}
+// console.log(conversationZonesMap);
 
 const charactersMap = [];
 for (let i = 0; i < charactersMapData.length; i += 140) {
@@ -68,6 +75,24 @@ battleZonesMap.forEach((row, i) => {
 });
 
 // console.log(battleZones);
+
+const conversationZones = [];
+
+conversationZonesMap.forEach((row, i) => {
+  row.forEach((symbol, j) => {
+    if (symbol === 4776)
+      conversationZones.push(
+        new Boundary({
+          position: {
+            x: j * Boundary.width + offset.x,
+            y: i * Boundary.height + offset.y,
+          },
+        })
+      );
+  });
+});
+
+// console.log(conversationZones);
 
 const goobieImage = new Image();
 goobieImage.src = "./images/goobie.png";
@@ -256,12 +281,14 @@ const movables = [
   ...boundaries,
   foreground,
   ...battleZones,
+  ...conversationZones,
   ...characters,
 ];
 const renderables = [
   background,
   ...boundaries,
   ...battleZones,
+  ...conversationZones,
   ...characters,
   player,
   foreground,
@@ -285,6 +312,7 @@ function animate() {
   let moving = true;
   player.animate = false;
 
+  if (conversation.initiated) return;
   if (battle.initiated) return;
   // this is where we activate a battle
   if (keys.w.pressed || keys.a.pressed || keys.s.pressed || keys.d.pressed) {
@@ -344,6 +372,55 @@ function animate() {
         break;
       }
     }
+    // this is where we initiate a conversation
+    for (let i = 0; i < conversationZones.length; i++) {
+      const conversation = conversationZones[i];
+      const overlappingArea =
+        (Math.min(
+          player.position.x + player.width,
+          conversation.position.x + conversation.width
+        ) -
+          Math.max(player.position.x, conversation.position.x)) *
+        (Math.min(
+          player.position.y + player.height,
+          conversation.position.y + conversation.height
+        ) -
+          Math.max(player.position.y, conversation.position.y));
+      if (
+        rectangularCollision({
+          rectangle1: player,
+          rectangle2: conversation,
+        })
+      ) {
+        console.log("talk talk");
+        if (
+          rectangularCollision({
+            rectangle1: player,
+            rectangle2: conversation,
+          }) &&
+          overlappingArea > (player.width * player.height) / 2
+        ) {
+          window.cancelAnimationFrame(animationId);
+          audio.map.stop();
+          // console.log("did we make it this far?");
+          conversation.initiated = true;
+
+          gsap.to("#conversationDiv", {
+            opacity: 1,
+            duration: 0.2,
+            onComplete() {
+              initConversation();
+              gsap.to("#conversationDiv", {
+                opacity: 0.75,
+                duration: 0.1,
+              });
+            },
+          });
+        }
+
+        break;
+      }
+    }
   }
 
   if (keys.w.pressed && lastKey === "w") {
@@ -375,6 +452,19 @@ function animate() {
         break;
       }
     }
+    // for (let i = 0; i < conversationZones.length; i++) {
+    //   const conversation = conversationZones[i];
+    //   if (
+    //     rectangularCollision({
+    //       rectangle1: player,
+    //       rectangle2: conversation,
+    //     })
+    //   ) {
+    //     console.log("talk talk");
+    //     // moving = false;
+    //     break;
+    //   }
+    // }
 
     if (moving)
       movables.forEach((movable) => {
@@ -409,6 +499,20 @@ function animate() {
         break;
       }
     }
+    // for (let i = 0; i < conversationZones.length; i++) {
+    //   const conversation = conversationZones[i];
+    //   if (
+    //     rectangularCollision({
+    //       rectangle1: player,
+    //       rectangle2: conversation,
+    //     })
+    //   ) {
+    //     console.log("talk talk");
+    //     // moving = false;
+    //     break;
+    //   }
+    // }
+
     if (moving)
       movables.forEach((movable) => {
         movable.position.x += 3;
@@ -442,6 +546,21 @@ function animate() {
         break;
       }
     }
+
+    // for (let i = 0; i < conversationZones.length; i++) {
+    //   const conversation = conversationZones[i];
+    //   if (
+    //     rectangularCollision({
+    //       rectangle1: player,
+    //       rectangle2: conversation,
+    //     })
+    //   ) {
+    //     console.log("talk talk");
+    //     // moving = false;
+    //     break;
+    //   }
+    // }
+
     if (moving)
       movables.forEach((movable) => {
         movable.position.y -= 3;
@@ -474,6 +593,20 @@ function animate() {
         break;
       }
     }
+    // for (let i = 0; i < conversationZones.length; i++) {
+    //   const conversation = conversationZones[i];
+    //   if (
+    //     rectangularCollision({
+    //       rectangle1: player,
+    //       rectangle2: conversation,
+    //     })
+    //   ) {
+    //     console.log("talk talk");
+    //     // moving = false;
+    //     break;
+    //   }
+    // }
+
     if (moving)
       movables.forEach((movable) => {
         movable.position.x -= 3;

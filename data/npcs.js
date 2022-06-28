@@ -93,6 +93,6 @@ const npcs = {
     },
     animate: false,
     name: "Player",
-    sentences: [sentences.Ask],
+    sentences: [sentences.First_Ask],
   },
 };

@@ -78,28 +78,6 @@ class Sprite {
     }
   }
 }
-class Npc extends Sprite {
-  constructor({
-    // isEnemy = false,
-    name,
-    position,
-    image,
-    frames = { max: 1, hold: 10 },
-    sprites,
-    animate = false,
-    rotation = 0,
-  }) {
-    super({
-      position,
-      image,
-      frames,
-      sprites,
-      animate,
-      rotation,
-    });
-    this.name = name;
-  }
-}
 
 class Monster extends Sprite {
   constructor({
@@ -334,6 +312,35 @@ class Monster extends Sprite {
   }
 }
 
+class Npc extends Sprite {
+  constructor({
+    // isEnemy = false,
+    name,
+    position,
+    image,
+    frames = { max: 1, hold: 10 },
+    sprites,
+    animate = false,
+    rotation = 0,
+    sentences,
+  }) {
+    super({
+      position,
+      image,
+      frames,
+      sprites,
+      animate,
+      rotation,
+      sentences,
+    });
+    this.name = name;
+    this.sentences = sentences;
+  }
+  converse() {
+    console.log("conversation method initiated");
+  }
+}
+
 class Boundary {
   static width = 48;
   static height = 48;
@@ -344,7 +351,7 @@ class Boundary {
   }
 
   draw() {
-    c.fillStyle = "rgba(255, 0, 0, 0.0 )";
+    c.fillStyle = "rgba(0, 0, 255, 0.08 )";
     c.fillRect(this.position.x, this.position.y, this.width, this.height);
   }
 }

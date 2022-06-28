@@ -1,11 +1,15 @@
 const sentences = {
-  Ask: {
-    name: "Player Ask",
+  First_Ask: {
+    name: "Ask Question",
     text: "Can YOU tell me anything about this strange land?",
   },
+  // Second_Ask: {
+  //   name: "SecondAsk",
+  //   text: "Wuzzzzzzzzuppppppp?",
+  // },
   First_Response: {
     name: "FirstNPCResponse",
-    text: "I'm Goobie! My Dad built this world for his dev site - you can find the information you need from other NPC's and from island residents hiding in the grass. They might need to have their confidence boosted before they will let you proceed around the island though. If you don't want to play the game - you can always go right to https://resume.jonellwood.dev for everything you need.",
+    text: "I'm Goobie! My Dad built this world for his dev site - NPC's and other island residents hiding in the grass might have information. They probably need to have their confidence boosted before they will let you proceed around the island though.",
   },
   Second_Response: {
     name: "SecondNPCResponse",
