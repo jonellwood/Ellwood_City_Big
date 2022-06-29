@@ -5,7 +5,7 @@ let text = [];
 let conversationAnimationId;
 
 function initConversation() {
-  //   console.log("Holy 💩 it worked ");
+  console.log("Holy 💩 it worked ");
 
   document.querySelector("#userInterface").style.display = "block";
   document.querySelector("#wordBox").style.display = "none";
