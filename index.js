@@ -6,7 +6,7 @@ const canvas = document.querySelector("canvas");
 const c = canvas.getContext("2d");
 // console.log(conversationZonesData);
 
-canvas.width = 1048;
+canvas.width = 1024;
 canvas.height = 576;
 
 const collisionsMap = [];
@@ -126,6 +126,7 @@ charactersMap.forEach((row, i) => {
             hold: 60,
           },
           scale: 3,
+          sayings: "This is a test saying",
           // animate: true,
         })
       );
@@ -152,12 +153,14 @@ charactersMap.forEach((row, i) => {
             x: j * Boundary.width + offset.x,
             y: i * Boundary.height + offset.y,
           },
+          name: "goobie",
           image: goobieImage,
           frames: {
             max: 4,
             hold: 60,
           },
           scale: 3,
+          sayings: "This is Goobie.",
           // animate: true,
         })
       );
@@ -206,7 +209,7 @@ charactersMap.forEach((row, i) => {
     }
   });
 });
-// console.log(charactersMap);
+console.log(characters);
 
 const image = new Image();
 image.src = "./images/EllwoodCity.png";
@@ -372,7 +375,7 @@ function animate() {
         break;
       }
     }
-    // this is where we initiate a conversation
+    //   // this is where we initiate a conversation
     for (let i = 0; i < conversationZones.length; i++) {
       const conversation = conversationZones[i];
       const overlappingArea =
@@ -398,27 +401,35 @@ function animate() {
             rectangle1: player,
             rectangle2: conversation,
           }) &&
-          overlappingArea > (player.width * player.height) / 2
+          overlappingArea > (player.width * player.height) / 2 &&
+          Math.random() < 0.25
         ) {
           window.cancelAnimationFrame(animationId);
           audio.map.stop();
 
           // console.log(rectangularCollision);
           conversation.initiated = true;
-
-          gsap.to("#conversationDiv", {
+          gsap.to("#overlappingDiv", {
             opacity: 1,
-            duration: 0.2,
+            repeat: 3,
+            yoyo: true,
+            duration: 0.4,
             onComplete() {
-              initConversation();
-              gsap.to("#conversationDiv", {
-                opacity: 0.75,
-                duration: 0.1,
+              gsap.to("#overlappingDiv", {
+                opacity: 1,
+                duration: 0.4,
+                onComplete() {
+                  initConversation();
+                  animateConversation();
+                  gsap.to("overlappingDiv", {
+                    opacity: 0,
+                    duration: 0.4,
+                  });
+                },
               });
             },
           });
         }
-
         break;
       }
     }
@@ -664,3 +675,21 @@ addEventListener("click", () => {
     clicked = true;
   }
 });
+
+// trying to initiate something via mousedown events
+
+// console.log(conversationZones);
+
+// addEventListener("click", (e) => {
+//   console.log(e);
+//   console.log("X is " + e.clientX);
+//   console.log("Y is " + e.clientY);
+//   console.log("✨ ✨ ✨ ✨ ✨ ✨ ✨ ");
+// });
+
+// addEventListener("click", (e) => {
+// console.log(typeof clickAreaX[1]);
+// console.log(typeof e.clientX);
+// console.log(clickAreaX);
+// console.log(clickAreaX[1]);
+// console.log("e.clientX is " + e.clientX);

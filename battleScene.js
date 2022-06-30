@@ -23,9 +23,10 @@ let battleAnimationId;
 function initBattle() {
   document.querySelector("#userInterface").style.display = "block";
   document.querySelector("#wordBox").style.display = "none";
-  document.querySelector("#enemyHealthBar").style.width = "20%";
-  document.querySelector("#playerHealthBar").style.width = "20%";
+  document.querySelector("#enemyHealthBar").style.width = "40%";
+  document.querySelector("#playerHealthBar").style.width = "40%";
   document.querySelector("#respectsBox").replaceChildren();
+  document.querySelector("#banner").style.display = "none";
 
   draggle = new Monster(monsters.Draggle);
   emby = new Monster(monsters.Emby);
@@ -41,6 +42,8 @@ function initBattle() {
   document.querySelectorAll("button").forEach((button) => {
     button.addEventListener("click", (e) => {
       const selectedRespect = respects[e.currentTarget.innerHTML];
+      // console.log(respects);
+      // console.log(selectedRespect);
       emby.respect({
         respect: selectedRespect,
         recipient: draggle,

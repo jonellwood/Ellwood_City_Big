@@ -27,7 +27,7 @@
 
 
         button {
-            border: .5px, solid, lightgray;
+            border: 1px, solid, lightgray;
             border-radius: 20px;
             margin: 2px;
             cursor: pointer;
@@ -66,7 +66,7 @@
             bottom: 0;
             left: 0;
             height: 140px;
-            border: 4px black solid;
+            border: 4px black double;
             padding: 12px;
             z-index: 2;
         }
@@ -91,42 +91,47 @@
             bottom: 0;
             left: 0;
             height: 140px;
-            border: 4px solid black;
+            border: 4px double black;
             padding: 12px;
             z-index: 2;
         }
 
-        #conversationDiv {
-            background-color: black;
+        /* #conversationDiv {
+            background-color: white;
             position: absolute;
-            top: 750;
+            width: 1024px;
+            height: 576px;
+            
             bottom: 0;
-            right: 0;
+            
             left: 0;
             opacity: 0;
             pointer-events: none;
             z-index: 10;
-            color: white;
-        }
+            color: black;
+            border: double black 4px;
+            padding: 12px;
+        } */
     </style>
 
 </head>
 
 <body>
     <div style="display: inline-block; position: relative;">
-        <div id="overlappingDiv" style="
-                    background-color: black; 
-                    position: absolute; 
-                    top: 0; 
-                    bottom: 0;  
-                    opacity: 0; 
-                    pointer-events: none; 
-                    z-index: 10
-                    ">
-        </div>
-        <div id="conversationDiv"></div>
 
-        <div
+        <div id="overlappingDiv" style="
+              background-color: black;
+              position: absolute;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              left: 0;
+              opacity: 0;
+              pointer-events: none;
+              z-index: 10;
+            "></div>
+
+        <div id="banner"
             style="display: inline-block; position: absolute; top: 0; font-size: 10px; color: black; margin-left: 10px; margin-top: 10px; width: 524px; overflow: hidden;">
             Use "W, A, S, D
             keys to move - this site is currently being developed and certain things still dont work. No judging 😀
@@ -140,7 +145,7 @@
 
         <div id="userInterface" style="display: none">
             <div id="topLeftDataBox"
-                style="background-color: white; width: 200px; position:absolute; top: 50px; left: 50px; border: 4px black solid; padding: 12px;">
+                style="background-color: white; width: 200px; position:absolute; top: 50px; left: 50px; border: 4px black double; padding: 12px;">
                 <h1 style="font-size: 16px;">Draggle</h1>
                 <div style="position: relative;">
                     <!-- Draggles health bar  -->
@@ -151,7 +156,7 @@
                 </div>
             </div>
             <div id="bottomRightDataBox"
-                style="background-color: white; width: 200px; position:absolute; top: 325px; right: 50px; border: 4px black solid; padding: 12px;">
+                style="background-color: white; width: 200px; position:absolute; top: 325px; right: 50px; border: 4px black double; padding: 12px;">
                 <h1 style="font-size: 16px;">Emby</h1>
                 <div style="position: relative;">
                     <div style="height: 5px; background-color: #ccc; margin-top: 10px;"></div>
@@ -161,7 +166,7 @@
                 </div>
             </div>
             <div id="oneMoreDiv"
-                style="background-color: white; height: 130px; position: absolute; bottom: 0; right: 0; left: 0; border-top: 4px black solid; display: flex;">
+                style="background-color: white; height: 130px; position: absolute; bottom: 0; right: 0; left: 0; border-top: 4px black double; display: flex;">
                 <div id="wordBox"
                     style="position: absolute; top: 0; right: 0; bottom: 0; left: 0; background-color: white; padding: 12px; display: none; cursor: pointer;">
 
@@ -178,7 +183,49 @@
 
         <!-- Conversation Interface Div starts here -->
 
+        <div id="conversationDiv" style="display: none;">
+            <button id="escapeHatch" style="position: absolute; top: 20px; left: 15px">❌</button>
+            <div id="topLeftPlayerBox"
+                style="background-color: white; width: 200px; position:absolute; top: 20px; left: 250px; border: 4px black double; padding: 12px; height: 120px; width: 670px; ">
+                <h1 id="playerName" style="font-size: 16px;">Player</h1>
+                <div style="position: relative;">
 
+                    <div id="staticText" style="background-color: white; padding: 12px; color: black; ">
+                    </div>
+                </div>
+            </div>
+            <div id="midRightNpcBox"
+                style="background-color: white; width: 200px; position:absolute; top: 199px; right: 250px; border: 4px black double; padding: 12px; height: 120px; width: 670px; ">
+                <h1 id="npcName" style="font-size: 16px; text-align: right;">Goobie</h1>
+                <div style="position: relative;">
+
+                    <div id="replyButtons"
+                        style="background-color: white; padding: 12px; color: black; display: grid; grid-template-columns: 1fr 1fr; ">
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="oneMoreMoreDiv"
+                style="background-color: white; height: 130px; position: absolute; bottom: 0; right: 0; left: 0; border-top: 4px black double; display: flex;">
+                <div id="leftDiv"
+                    style="background-color:white; height: 10%; width: 66.6%; position: absolute; top: 0; right: 0;  border: 4px black double; display: flex;">
+
+
+                </div>
+            </div>
+            <!-- <div id="middleDiv"
+                style=" display: none; width: 66.6%;  background-color:white; height: 33%; position: relative; left: 0; border: 4px black double; ">
+                <div id="replyButtons" style=" display: grid; grid-template-columns: 1fr 1fr; ">Reply
+                    Buttons</div>
+                <div id="npcImage">npc Image</div>
+            </div> -->
+            <div id="rightDiv"
+                style="background-color:white; height: 33%; width: 97%; position: absolute; bottom: 0;  left: 0; border: 4px black double; display: block; padding: 12px;">
+                <div id="textFromAnswerButtons">text from reply buttons</div>
+
+            </div>
+        </div>
 
 
 
@@ -202,11 +249,14 @@
 <script src="./data/characters.js"></script>
 <script src="./data/sentences.js"></script>
 <script src="./data/npcs.js"></script>
-<script src="conversation.js"></script>
+<!-- <script src="./data/clickAreaX.js"></script> -->
+<!-- <script src="./data/clickAreaY.js"></script> -->
+<!-- <script src="converstationByMouseDown.js"></script> -->
 <script src="utils.js"></script>
 <script src="classes.js"></script>
 <script src="index.js"></script>
 <script src="battleScene.js"></script>
+<script src="conversation.js"></script>
 
 
 </html>

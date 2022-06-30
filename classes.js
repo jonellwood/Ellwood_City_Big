@@ -1,14 +1,17 @@
 class Sprite {
   constructor({
     position,
+    name,
     image,
     frames = { max: 1, hold: 10 },
     sprites,
     animate = false,
     rotation = 0,
     scale = 1,
+    sayings,
   }) {
     this.position = position;
+    this.name = name;
     this.image = new Image();
     this.frames = { ...frames, val: 0, elapsed: 0 };
     this.image.onload = () => {
@@ -21,6 +24,7 @@ class Sprite {
     this.opacity = 1;
     this.rotation = rotation;
     this.scale = scale;
+    this.sayings = sayings;
   }
 
   draw() {
@@ -323,6 +327,7 @@ class Npc extends Sprite {
     animate = false,
     rotation = 0,
     sentences,
+    scale,
   }) {
     super({
       position,
@@ -335,11 +340,34 @@ class Npc extends Sprite {
     });
     this.name = name;
     this.sentences = sentences;
+    this.scale = scale;
   }
-  converse() {
+  converse(sentence, renderedSprites) {
     console.log("conversation method initiated");
+    // document.querySelector("#rightDiv").innerHTML =
+    //   this.name + "says " + this.sentences;
+
+    switch (sentence.name) {
+      case "Introduction":
+        audio.bless.play();
+    }
   }
 }
+
+// trash
+// faint() {
+//     document.querySelector("#wordBox").innerHTML =
+//       this.name + " says 'Thanks for the love' ";
+//     gsap.to(this.position, {
+//       y: this.position.y + 20,
+//     });
+//     gsap.to(this, {
+//       opacity: 0,
+//     });
+//     audio.battle.stop();
+//     audio.faint.play();
+//   }
+// end trash
 
 class Boundary {
   static width = 48;

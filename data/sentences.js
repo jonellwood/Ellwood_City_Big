@@ -7,24 +7,24 @@ const sentences = {
   //   name: "SecondAsk",
   //   text: "Wuzzzzzzzzuppppppp?",
   // },
-  First_Response: {
-    name: "FirstNPCResponse",
+  Introduction: {
+    name: "Introduction",
     text: "I'm Goobie! My Dad built this world for his dev site - NPC's and other island residents hiding in the grass might have information. They probably need to have their confidence boosted before they will let you proceed around the island though.",
   },
-  Second_Response: {
-    name: "SecondNPCResponse",
-    text: "I'm Shmoo! I have been waiting here so I can tell someone about the places my Dad has worked. He's been a PoliceMan, a salesman, and an IT Director for a small Municipal Government. You can learn more at https://resume.jonellwood.dev",
+  Projects: {
+    name: "Projects",
+    text: "Here is a link to some of the projects my Dad has worked on. TODO: create a list of projects on a subdomain.",
   },
-  Third_Response: {
-    name: "ThirdNPCResponse",
+  Contact: {
+    name: "Contact",
     text: "Placeholder! Lets get the logic worked out on how this will actually function first. ",
   },
-  Fourth_Response: {
-    name: "FourthNPCResponse",
-    text: "Placeholder! Why are you still typing these? Did you not hear me??? We have other stuff to do first. ",
+  Resume: {
+    name: "Resume",
+    text: "If you don't want to play the game you can always go to -- TODO create the subomain of https://resume.jonellwood.dev and then put a resume there",
   },
-  Fifth_Response: {
-    name: "FifthNPCResponse",
+  Racoon: {
+    name: "Racoon",
     text: "I'm just a racoon - why would you expect me to know anything?? ",
   },
 };
