@@ -161,7 +161,7 @@ charactersMap.forEach((row, i) => {
           },
           scale: 3,
           sayings: "This is Goobie.",
-          animate: true,
+          animate: false,
         })
       );
     } else if (symbol === 17777) {

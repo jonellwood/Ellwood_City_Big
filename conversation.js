@@ -65,9 +65,9 @@ animate();
 
 document.querySelector("#escapeHatch").addEventListener("click", (e) => {
   window.cancelAnimationFrame(conversationAnimationId);
+  animate();
   renderedSprites = [];
-  document.querySelector("#conversationDiv").style.display = "none";
   conversation.initiated = false;
   audio.map.play();
-  // animate();
+  document.querySelector("#conversationDiv").style.display = "none";
 });
