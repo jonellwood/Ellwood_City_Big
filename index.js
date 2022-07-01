@@ -161,7 +161,7 @@ charactersMap.forEach((row, i) => {
           },
           scale: 3,
           sayings: "This is Goobie.",
-          // animate: true,
+          animate: true,
         })
       );
     } else if (symbol === 17777) {
@@ -402,7 +402,7 @@ function animate() {
             rectangle2: conversation,
           }) &&
           overlappingArea > (player.width * player.height) / 2 &&
-          Math.random() < 0.25
+          Math.random() < 0.05
         ) {
           window.cancelAnimationFrame(animationId);
           audio.map.stop();

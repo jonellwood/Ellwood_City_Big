@@ -21,7 +21,7 @@ const sentences = {
   },
   Resume: {
     name: "Resume",
-    text: "If you don't want to play the game you can always go to -- TODO create the subomain of https://resume.jonellwood.dev and then put a resume there",
+    text: "If you don't want to play the game you can always go to https://resume.jonellwood.dev to view a full resume",
   },
   Racoon: {
     name: "Racoon",
