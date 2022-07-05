@@ -13,7 +13,7 @@ const sentences = {
   },
   Projects: {
     name: "Projects",
-    text: "Here is a link to some of the projects my Dad has worked on. TODO: create a list of projects on a subdomain.",
+    text: "A blog site with information on some of the projects my Dad has worked on is at https://projects.jonellwood.dev",
   },
   Contact: {
     name: "Contact",
