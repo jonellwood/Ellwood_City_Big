@@ -6,5 +6,6 @@
     "renderable",
     "renderables",
     "shmoo"
-  ]
+  ],
+  "liveServer.settings.port": 5501
 }

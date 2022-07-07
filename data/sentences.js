@@ -17,7 +17,7 @@ const sentences = {
   },
   Contact: {
     name: "Contact",
-    text: "Placeholder! Lets get the logic worked out on how this will actually function first. ",
+    text: "If you want to contact my Dad you can visit https://contact.jonellwood.dev ",
   },
   Resume: {
     name: "Resume",
